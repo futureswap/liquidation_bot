@@ -1,4 +1,3 @@
-const provider = require("./provider");
 
 const additionalEvents = [
   {

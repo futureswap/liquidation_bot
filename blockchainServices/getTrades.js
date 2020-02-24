@@ -1,6 +1,6 @@
 const {provider} =  require("./provider");
-const {abi} =  require("./instance")
-const {exchangeAddresses} =  require("./exchangeAddresses")
+const {abi} =  require("./exchangeInstance")
+const {exchangeAddresses} =  require("./Addresses")
 const ethers = require('ethers');
 const {post} = require('./post');
 

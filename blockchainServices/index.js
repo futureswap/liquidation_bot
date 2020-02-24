@@ -1,6 +1,7 @@
 const {getTradesFromEvents} = require("./getTrades")
-
+const {listenForChainlinkUpdate} = require("./getOracleUpdates")
 const main = async () => {
-    await getTradesFromEvents()
+     getTradesFromEvents()
+     listenForChainlinkUpdate()
 }
 main()
