@@ -29,7 +29,7 @@ app.use((req, res, next) => {
 app.use('/trades', routes.trades)
 
 
-const eraseDatabaseOnSync = false;
+const eraseDatabaseOnSync = true;
 
 sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
   if (eraseDatabaseOnSync) {

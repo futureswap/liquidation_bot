@@ -1,6 +1,7 @@
 {
     "tradeId": 0,
-    "open": true,
-    "liquidationPrice": 100,
-    "block": 100
+    "isLong": true,
+    "liquidationPrice": "100",
+    "block": 101,
+    "exchangeAddress": "0x932E5DBb92D32d4e5938483FdA31c0E4a7F5648D"
 }

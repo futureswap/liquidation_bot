@@ -8,3 +8,10 @@ export const getTrades = async (req) => {
     offset: offset ? parseInt(offset, 10) : null
   });
 }
+
+export const setTrades = async (req) => {
+  return await models.trade.upsert(req.body, {
+    }, {
+        where: {tradeId: req.body.tradeId}
+    })
+} 

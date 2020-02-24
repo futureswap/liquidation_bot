@@ -9,3 +9,13 @@ export const getTrades = async (req, res) => {
         return res.status(500).send(e.message)
     }
 }
+
+export const setTrades = async (req, res) => {
+    try {
+        await tradeService.setTrades(req)
+        return res.status(200).send('database updated');
+    } catch (e) {
+        console.log({e: e.message})
+        return res.status(500).send(e.message)
+    }
+}

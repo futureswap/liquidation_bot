@@ -13,14 +13,17 @@ module.exports = {
         tradeId: {
           type: Sequelize.INTEGER
         },
-        open: {
+        isLong: {
           type: Sequelize.BOOLEAN
         },
         liquidationPrice: {
-          type: Sequelize.INTEGER
+          type: Sequelize.STRING
         },
         block: {
           type: Sequelize.INTEGER
+        },
+        exchangeAddress: {
+          type: Sequelize.STRING
         },
         createdAt: {
           allowNull: false,
