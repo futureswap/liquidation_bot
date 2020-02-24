@@ -13,6 +13,9 @@ module.exports = {
         tradeId: {
           type: Sequelize.INTEGER
         },
+        isClosed: {
+          type: Sequelize.BOOLEAN
+        },
         isLong: {
           type: Sequelize.BOOLEAN
         },

@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       unique: true, 
       field: "tradeId"
     },
+    isClosed: DataTypes.BOOLEAN,
     isLong: DataTypes.BOOLEAN,
     liquidationPrice: DataTypes.STRING,
     block: DataTypes.INTEGER,

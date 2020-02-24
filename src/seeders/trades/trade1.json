@@ -1,5 +1,6 @@
 {
     "tradeId": 0,
+    "isClosed": false,
     "isLong": true,
     "liquidationPrice": "100",
     "block": 101,
