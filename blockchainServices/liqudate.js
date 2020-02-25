@@ -48,9 +48,10 @@ const liquidateTransaction = async (tradeId, exchangeAddress, wallet, nonce) => 
     console.log("liquidate transaction!",{tradeId, exchangeAddress})
     const contract = new ethers.Contract(exchangeAddress, abi, provider);
     const method = contract.connect(wallet);
-    console.log({nonce})
+    const gasPrice = process.env.GASPRICE
     const liquidateTrade = await method.liquidateTrade(tradeId, {
-        nonce
+        nonce,
+        gasPrice: ethers.utils.bigNumberify(gasPrice)
     })
     console.log(liquidateTrade)
 }
