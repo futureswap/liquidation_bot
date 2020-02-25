@@ -7,29 +7,31 @@ const liquidationCheck = async (dataBaseData, currentPrice) => {
     console.log("liquidation check 1 ============", currentPrice)
     const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
     let nonce = await wallet.getTransactionCount("pending")
-    let i = 0 
-    dataBaseData.map(async trade => {
-        console.log("mapping", trade.liquidationPrice, trade.tradeId)
-        if (!trade.isClosed) {
-            if (trade.isLong) {
-                if (Number(trade.liquidationPrice) > currentPrice) {
-                    nonce = nonce + i
-                    i++
-                    await liquidateTransaction(trade.tradeId, trade.exchangeAddress, wallet, nonce)
+    let n = 0
+    for (i= 0; i < dataBaseData.length; i++) { 
+        if (!dataBaseData[i].isClosed) {
+            const contract = new ethers.Contract(dataBaseData[i].exchangeAddress, abi, provider);
+            const liquidationPrice = await contract.getLiquidationPrice(dataBaseData[i].tradeId)
+            console.log("mapping", dataBaseData[i].liquidationPrice, liquidationPrice.toString(), dataBaseData[i].tradeId)
+            if (dataBaseData[i].isLong) {
+                if (Number(liquidationPrice) > currentPrice) {
+                    nonce = nonce + n
+                    n++
+                    await liquidateTransaction(dataBaseData[i].tradeId, dataBaseData[i].exchangeAddress, wallet, nonce)
                     } 
                } else {
-                   console.log("trade is short", Number(trade.liquidationPrice), currentPrice)
-                    if (Number(trade.liquidationPrice) < currentPrice ) {
-                        console.log("trade.isShort", Number(trade.liquidationPrice), currentPrice)
-                        nonce = nonce + i
-                        i++
-                        await liquidateTransaction(trade.tradeId, trade.exchangeAddress, wallet, nonce)
+                   console.log("trade is short", Number(liquidationPrice), currentPrice)
+                    if (Number(liquidationPrice) < currentPrice ) {
+                        console.log("dataBaseData[i].isShort", Number(liquidationPrice), currentPrice)
+                        nonce = nonce + n
+                        n++
+                        await liquidateTransaction(dataBaseData[i].tradeId, dataBaseData[i].exchangeAddress, wallet, nonce)
                     }
                 }
             } else {
                 console.log("trade is closed")
             }
-    })
+        }
 }
 
 const liquidateTransaction = async (tradeId, exchangeAddress, wallet, nonce) => {
