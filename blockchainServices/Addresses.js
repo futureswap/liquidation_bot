@@ -1,5 +1,5 @@
- const exchangeAddresses =  ["0x504C917Ef28210f9Ce3D2A2DdA15eb46aD0a9A2B"]
- const chainlinkAddress = "0x0bF4e7bf3e1f6D6Dc29AA516A33134985cC3A5aA"
+ const exchangeAddresses =  ["0x0dAC299678Bc1106Bb693958DB6E1b910a5f7961"]
+ const chainlinkAddress = "0xa54B7d7bb36950c1e9cc49acd68Fb35247880cbf"
  module.exports = {
      exchangeAddresses,
      chainlinkAddress

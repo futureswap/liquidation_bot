@@ -1,15 +1,18 @@
-const {provider} =  require("./provider");
 const {abi} =  require("./chainlinkInstance")
 const {chainlinkAddress} =  require("./Addresses")
 const ethers = require('ethers');
-const {post} = require('./post');
+const {fetch} = require('./fetch');
+const {liquidationCheck} = require('./liqudate')
 
+
+const url = process.env.URL
+const provider = url ? new ethers.providers.JsonRpcProvider(url) : new ethers.getDefaultProvider(process.env.NETWORK)
 
 const listenForChainlinkUpdate = async () => {
     const contract = new ethers.Contract(chainlinkAddress, abi, provider);
-    provider.resetEventsBlock(process.env.BLOCKSTART)
-    contract.on("AnswerUpdated", (current) => {
-        console.log(current.toString())
+    contract.on("AnswerUpdated", async (current) => {
+        const databaseData = await fetch()
+        liquidationCheck(databaseData, (Number(current) * 10000000000))
     })
 }
 module.exports = {
@@ -17,4 +20,3 @@ module.exports = {
 }
 
 
-// event AnswerUpdated(int256 indexed current, uint256 indexed roundId, uint256 timestamp);

@@ -33,7 +33,7 @@ const eraseDatabaseOnSync = true;
 
 sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
   if (eraseDatabaseOnSync) {
-    seedData.createTrade();
+    // seedData.createTrade();
   }
     app.listen(port, () => {
     console.log(`Example app listening on port ${port}!`)

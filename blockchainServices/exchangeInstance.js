@@ -1,339 +1,356 @@
 
 const additionalEvents = [
   {
-    anonymous: false,
-    inputs: [
+    "anonymous": false,
+    "inputs": [
       {
-        indexed: false,
-        internalType: "uint256",
-        name: "_tradeId",
-        type: "uint256"
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_tradeId",
+        "type": "uint256"
       },
       {
-        indexed: false,
-        internalType: "uint256",
-        name: "_collateral",
-        type: "uint256"
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_addedCollateral",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "_tradeOwner",
+        "type": "address"
       }
     ],
-    name: "AddCollateral",
-    type: "event"
+    "name": "AddCollateral",
+    "type": "event"
   },
   {
-    anonymous: false,
-    inputs: [
+    "anonymous": false,
+    "inputs": [
       {
-        indexed: false,
-        internalType: "address",
-        name: "_voter",
-        type: "address"
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_tradeId",
+        "type": "uint256"
       },
       {
-        indexed: false,
-        internalType: "uint256",
-        name: "_proposalID",
-        type: "uint256"
+        "indexed": true,
+        "internalType": "address",
+        "name": "_tradeOwner",
+        "type": "address"
       },
       {
-        indexed: false,
-        internalType: "uint256",
-        name: "amountOfVotes",
-        type: "uint256"
-      },
-      {
-        indexed: false,
-        internalType: "bool",
-        name: "_yesVote",
-        type: "bool"
+        "indexed": false,
+        "internalType": "int256",
+        "name": "_protectedOpenPrice",
+        "type": "int256"
       }
     ],
-    name: "CastVote",
-    type: "event"
+    "name": "FrontRunning",
+    "type": "event"
   },
   {
-    anonymous: false,
-    inputs: [
+    "anonymous": false,
+    "inputs": [
       {
-        indexed: true,
-        internalType: "address",
-        name: "_provider",
-        type: "address"
+        "indexed": true,
+        "internalType": "address",
+        "name": "_provider",
+        "type": "address"
       },
       {
-        indexed: false,
-        internalType: "int256",
-        name: "newPrice",
-        type: "int256"
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_timestamp",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256[]",
+        "name": "_weeks",
+        "type": "uint256[]"
+      },
+      {
+        "indexed": true,
+        "internalType": "bool",
+        "name": "_isTrader",
+        "type": "bool"
       }
     ],
-    name: "FrontRunning",
-    type: "event"
+    "name": "Payouts",
+    "type": "event"
   },
   {
-    anonymous: false,
-    inputs: [
+    "anonymous": false,
+    "inputs": [
       {
-        indexed: true,
-        internalType: "address",
-        name: "_provider",
-        type: "address"
+        "indexed": true,
+        "internalType": "address",
+        "name": "_provider",
+        "type": "address"
       },
       {
-        indexed: false,
-        internalType: "uint256",
-        name: "_timestamp",
-        type: "uint256"
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_timestamp",
+        "type": "uint256"
       },
       {
-        indexed: false,
-        internalType: "uint256[]",
-        name: "_weeks",
-        type: "uint256[]"
+        "indexed": false,
+        "internalType": "uint256[]",
+        "name": "_snapshotIds",
+        "type": "uint256[]"
       },
       {
-        indexed: true,
-        internalType: "bool",
-        name: "_isTrader",
-        type: "bool"
+        "indexed": true,
+        "internalType": "address",
+        "name": "_exchangeContract",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_liquidityToken",
+        "type": "address"
       }
     ],
-    name: "Payouts",
-    type: "event"
+    "name": "PayoutsLP",
+    "type": "event"
   },
   {
-    anonymous: false,
-    inputs: [
+    "anonymous": false,
+    "inputs": [
       {
-        indexed: true,
-        internalType: "address",
-        name: "_provider",
-        type: "address"
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_tradeId",
+        "type": "uint256"
       },
       {
-        indexed: false,
-        internalType: "uint256",
-        name: "_timestamp",
-        type: "uint256"
+        "indexed": true,
+        "internalType": "address",
+        "name": "_tradeOwner",
+        "type": "address"
       },
       {
-        indexed: false,
-        internalType: "uint256[]",
-        name: "_snapshotIds",
-        type: "uint256[]"
+        "indexed": false,
+        "internalType": "bool",
+        "name": "_isLong",
+        "type": "bool"
       },
       {
-        indexed: true,
-        internalType: "address",
-        name: "_exchangeContract",
-        type: "address"
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_collateral",
+        "type": "uint256"
       },
       {
-        indexed: false,
-        internalType: "address",
-        name: "_liquidityToken",
-        type: "address"
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_protectedOpenPrice",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_closePrice",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_redemptionAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_timestamp",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "_referral",
+        "type": "address"
       }
     ],
-    name: "PayoutsLP",
-    type: "event"
+    "name": "TradeClose",
+    "type": "event"
   },
   {
-    anonymous: false,
-    inputs: [
+    "anonymous": false,
+    "inputs": [
       {
-        indexed: false,
-        internalType: "uint256",
-        name: "_tradeId",
-        type: "uint256"
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_tradeId",
+        "type": "uint256"
       },
       {
-        indexed: true,
-        internalType: "address",
-        name: "_tradeOwner",
-        type: "address"
+        "indexed": true,
+        "internalType": "address",
+        "name": "_tradeOwner",
+        "type": "address"
       },
       {
-        indexed: false,
-        internalType: "uint256",
-        name: "_collateral",
-        type: "uint256"
+        "indexed": true,
+        "internalType": "address",
+        "name": "_liquidator",
+        "type": "address"
       },
       {
-        indexed: false,
-        internalType: "uint256",
-        name: "_redemptionAmount",
-        type: "uint256"
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_liquidatorReturn",
+        "type": "uint256"
       },
       {
-        indexed: false,
-        internalType: "uint256",
-        name: "_assetTokenPrice",
-        type: "uint256"
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_liqTraderReturn",
+        "type": "uint256"
       },
       {
-        indexed: true,
-        internalType: "bool",
-        name: "_isLong",
-        type: "bool"
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_timestamp",
+        "type": "uint256"
       },
       {
-        indexed: true,
-        internalType: "uint256",
-        name: "_timestamp",
-        type: "uint256"
+        "indexed": false,
+        "internalType": "bool",
+        "name": "_isLong",
+        "type": "bool"
       },
       {
-        indexed: false,
-        internalType: "address",
-        name: "_referral",
-        type: "address"
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_liquidationPrice",
+        "type": "uint256"
       }
     ],
-    name: "TradeClose",
-    type: "event"
+    "name": "TradeLiquidate",
+    "type": "event"
   },
   {
-    anonymous: false,
-    inputs: [
+    "anonymous": false,
+    "inputs": [
       {
-        indexed: false,
-        internalType: "uint256",
-        name: "_tradeId",
-        type: "uint256"
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "_tradeId",
+        "type": "uint256"
       },
       {
-        indexed: true,
-        internalType: "address",
-        name: "_liquidator",
-        type: "address"
+        "indexed": true,
+        "internalType": "address",
+        "name": "_tradeOwner",
+        "type": "address"
       },
       {
-        indexed: false,
-        internalType: "uint256",
-        name: "_liquidatorReturn",
-        type: "uint256"
+        "indexed": false,
+        "internalType": "bool",
+        "name": "_isLong",
+        "type": "bool"
       },
       {
-        indexed: false,
-        internalType: "uint256",
-        name: "_liqTraderReturn",
-        type: "uint256"
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_collateral",
+        "type": "uint256"
       },
       {
-        indexed: true,
-        internalType: "uint256",
-        name: "_timestamp",
-        type: "uint256"
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_leverage",
+        "type": "uint256"
       },
       {
-        indexed: true,
-        internalType: "bool",
-        name: "_isLong",
-        type: "bool"
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_openPrice",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_openFee",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_oracleRoundId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_timestamp",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "_referral",
+        "type": "address"
       }
     ],
-    name: "TradeLiquidate",
-    type: "event"
+    "name": "TradeOpen",
+    "type": "event"
   },
   {
-    anonymous: false,
-    inputs: [
+    "anonymous": false,
+    "inputs": [
       {
-        indexed: false,
-        internalType: "uint256",
-        name: "_tradeId",
-        type: "uint256"
+        "indexed": true,
+        "internalType": "address",
+        "name": "_provider",
+        "type": "address"
       },
       {
-        indexed: true,
-        internalType: "address",
-        name: "_tradeOwner",
-        type: "address"
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_assetTokenAmount",
+        "type": "uint256"
       },
       {
-        indexed: false,
-        internalType: "uint256",
-        name: "_collateral",
-        type: "uint256"
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_stableTokenAmount",
+        "type": "uint256"
       },
       {
-        indexed: false,
-        internalType: "uint256",
-        name: "_leverage",
-        type: "uint256"
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_LSTPrice",
+        "type": "uint256"
       },
       {
-        indexed: false,
-        internalType: "uint256",
-        name: "_assetTokenPrice",
-        type: "uint256"
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_LiquidityMinted",
+        "type": "uint256"
       },
       {
-        indexed: true,
-        internalType: "bool",
-        name: "_isLong",
-        type: "bool"
+        "indexed": false,
+        "internalType": "bool",
+        "name": "_addedLiq",
+        "type": "bool"
       },
       {
-        indexed: true,
-        internalType: "uint256",
-        name: "_timestamp",
-        type: "uint256"
-      },
-      {
-        indexed: false,
-        internalType: "address",
-        name: "_referral",
-        type: "address"
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_timestamp",
+        "type": "uint256"
       }
     ],
-    name: "TradeOpen",
-    type: "event"
-  },
-  {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "_provider",
-        type: "address"
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_assetTokenAmount",
-        type: "uint256"
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_stableTokenAmount",
-        type: "uint256"
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_LSTPrice",
-        type: "uint256"
-      },
-      {
-        indexed: false,
-        internalType: "uint256",
-        name: "_LiquidityMinted",
-        type: "uint256"
-      },
-      {
-        indexed: false,
-        internalType: "bool",
-        name: "_addedLiq",
-        type: "bool"
-      }
-    ],
-    name: "UpdateLiquidity",
-    type: "event"
+    "name": "UpdateLiquidity",
+    "type": "event"
   }
-];
+]
 
 const abi = [
   {
