@@ -1,4 +1,5 @@
 const axios = require('axios');
+const {errorLogger} = require("./logging")
 
 
 const post = async (data) => {
@@ -12,8 +13,7 @@ try {
 
     });
 } catch (e) {
-    console.log({url})
-    console.log({message: e})
+    errorLogger.log('error', new Error(`${e.message}`));
 }
 
 }

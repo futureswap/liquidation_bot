@@ -29,13 +29,13 @@ app.use((req, res, next) => {
 app.use('/trades', routes.trades)
 
 
-const eraseDatabaseOnSync = true;
+const eraseDatabaseOnSync = false;
 
 sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
   if (eraseDatabaseOnSync) {
     // seedData.createTrade();
   }
     app.listen(port, () => {
-    console.log(`Example app listening on port ${port}!`)
+    console.log(`App listening on port ${port}!`)
   })
 })

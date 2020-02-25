@@ -1,4 +1,6 @@
 const axios = require("axios");
+const {errorLogger} = require("./logging")
+
 
 const fetch = async data => {
   const url = "http://localhost:3001/trades";
@@ -7,8 +9,8 @@ const fetch = async data => {
     const response = await axios.get(url);
     return response.data;
   } catch (e) {
-    console.log({ url });
-    console.log({ message: e });
+    errorLogger.log('error', new Error(`${e.message}`));
+
   }
 };
 

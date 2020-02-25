@@ -3,6 +3,7 @@ const {abi} =  require("./exchangeInstance")
 const {exchangeAddresses} =  require("./Addresses")
 const ethers = require('ethers');
 const {post} = require('./post');
+const {logger} = require('./logging')
 
 
 
@@ -10,7 +11,6 @@ const getTradesFromEvents = async () => {
     const contract = new ethers.Contract(exchangeAddresses[0], abi, provider);
     provider.resetEventsBlock(process.env.BLOCKSTART)
     contract.on("TradeOpen", (one, two, three, four, five, six, seven, eight, nine, ten, eleven) => {
-        console.log(one, two, three, four, five, six, seven, eight, nine, ten, eleven)
         const openTrade = async () => {
             const tradeId =  eleven.args._tradeId.toString()
             let liquidationPrice
@@ -29,7 +29,7 @@ const getTradesFromEvents = async () => {
                 block: eleven.blockNumber,
                 exchangeAddress: eleven.address
             }
-            console.log(obj)
+            logger.log('info',  obj)
             post(obj)
         }
         openTrade()
@@ -46,7 +46,7 @@ const getTradesFromEvents = async () => {
                 block: ten.blockNumber,
                 exchangeAddress: ten.address
             }
-            console.log(obj)
+            logger.log('info', obj)
             post(obj)
         }
         closeTrade()
@@ -63,7 +63,7 @@ const getTradesFromEvents = async () => {
                 block: nine.blockNumber,
                 exchangeAddress: nine.address
             }
-            console.log("trade liquidated", obj)
+            logger.log('info', obj)
             post(obj)
         }
         liqudateTrade()
