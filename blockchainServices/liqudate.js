@@ -1,10 +1,20 @@
 const {provider} =  require("./provider");
 const {abi} =  require("./exchangeInstance")
 const ethers = require('ethers');
+const {fetch} = require('./fetch');
+const {chainlinkAbi} =  require("./chainlinkInstance")
+const {chainlinkAddress} =  require("./Addresses")
 
 
-const liquidationCheck = async (dataBaseData, currentPrice) => {
+
+const liquidationCheck = async (currentPrice) => {
     console.log("liquidation check 1 ============", currentPrice)
+    const dataBaseData = await fetch()
+    if (!currentPrice) {
+        const chainlink = new ethers.Contract(chainlinkAddress, chainlinkAbi, provider);
+        currentPrice = await chainlink.latestAnswer()
+        currentPrice = Number(currentPrice) * 10000000000
+    }
     const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
     let nonce = await wallet.getTransactionCount("pending")
     let n = 0
@@ -12,7 +22,7 @@ const liquidationCheck = async (dataBaseData, currentPrice) => {
         if (!dataBaseData[i].isClosed) {
             const contract = new ethers.Contract(dataBaseData[i].exchangeAddress, abi, provider);
             const liquidationPrice = await contract.getLiquidationPrice(dataBaseData[i].tradeId)
-            console.log("mapping", dataBaseData[i].liquidationPrice, liquidationPrice.toString(), dataBaseData[i].tradeId)
+            console.log("mapping", currentPrice.toString(), dataBaseData[i].liquidationPrice, liquidationPrice.toString(), dataBaseData[i].tradeId)
             if (dataBaseData[i].isLong) {
                 if (Number(liquidationPrice) > currentPrice) {
                     nonce = nonce + n
