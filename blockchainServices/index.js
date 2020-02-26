@@ -4,6 +4,8 @@ const {liquidationCheck} = require("./liqudate")
 const main = async () => {
      getTradesFromEvents()
      listenForChainlinkUpdate()
-     setInterval(liquidationCheck, process.env.RERUNTIME)
+     if (process.env.RERUNTIME) {
+        setInterval(liquidationCheck, process.env.RERUNTIME)
+     }
 }
 main()
