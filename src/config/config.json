@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": null,
-    "password": null,
+    "username": "postgres",
+    "password": "postgres",
     "database": "postgres",
-    "host": "127.0.0.1",
+    "host": "postgres",
     "dialect": "postgres",
     "port": "5432",
     "logging": false

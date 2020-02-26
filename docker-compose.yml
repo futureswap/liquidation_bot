@@ -3,14 +3,14 @@ version: "3.7"
 services:
 
   api:
-    build: ./src
+    build: .
     image: api:latest
     volumes:
       - ./src/config:/home/node/config
       - ./src:/home/node/src
     ports:
       - "3001:3001"
-    command: ./node_modules/.bin/nodemon src/index.js
+    command: ./node_modules/.bin/nodemon --exec babel-node src/index.js
     depends_on:
       - postgres
 
