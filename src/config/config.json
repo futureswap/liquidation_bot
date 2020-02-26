@@ -2,7 +2,7 @@
   "development": {
     "username": null,
     "password": null,
-    "database": "liquidation_bot",
+    "database": "postgres",
     "host": "127.0.0.1",
     "dialect": "postgres",
     "port": "5432",
