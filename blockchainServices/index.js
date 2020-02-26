@@ -8,4 +8,7 @@ const main = async () => {
         setInterval(liquidationCheck, process.env.RERUNTIME)
      }
 }
-main()
+
+module.exports = {
+   main
+}

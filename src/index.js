@@ -5,6 +5,7 @@ import routes from './routes'
 import express from 'express'
 import cors from 'cors'
 import bodyParser from 'body-parser'
+import {main} from '../blockchainServices/index'
 import * as seedData from './seeders'
 
 const port = process.env.PORT
@@ -38,3 +39,5 @@ sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
     console.log(`App listening on port ${port}!`)
   })
 })
+
+main()

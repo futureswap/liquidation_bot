@@ -19,7 +19,8 @@ const liquidationCheck = async (currentPrice) => {
     const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
     let nonce = await wallet.getTransactionCount("pending")
     let n = 0
-    for (i= 0; i < dataBaseData.length; i++) { 
+    let i = 0
+    for (i; i < dataBaseData.length; i++) { 
         if (!dataBaseData[i].isClosed) {
             const contract = new ethers.Contract(dataBaseData[i].exchangeAddress, abi, provider);
             const liquidationPrice = await contract.getLiquidationPrice(dataBaseData[i].tradeId)
