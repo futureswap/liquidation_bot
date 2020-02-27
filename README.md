@@ -49,3 +49,36 @@ Gas Price
 * The higher the more gas costs but the faster transactions will go through
 
 ## ec2 setup
+* ssh into ec2 instance 
+* Run
+```
+    $ sudo yum update -y
+    $ sudo yum install -y docker
+    $ sudo usermod -a -G docker ec2-user
+    $ sudo curl -L https://github.com/docker/compose/releases/download/1.26.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+    $ sudo chmod +x /usr/local/bin/docker-compose
+```
+* now docker-compose enter should work 
+* next we need to install git
+    $ sudo yum install git
+* clone this repo
+```
+    $ git clone https://github.com/futureswap/liquidation_bot.git
+    $ cd liquidation_bot
+```
+* add in the .env file
+* in another terminal start up docker with 
+```
+    $ sudo dockerd
+```
+
+* go back to original terminal and run 
+
+```
+    $ docker-compose up 
+```
+
+If you exit out of your instance the docker container will still be running to see the logs cd into liquidation_bot and run 
+```
+    $ docker-compose logs --follow --tail 20 api
+```
