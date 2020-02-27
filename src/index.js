@@ -36,7 +36,7 @@ sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
     // seedData.createTrade();
   }
     app.listen(port, () => {
-    console.log(`App listening on port ${port}!`)
+    console.log(`Tyrannosaurus Rekt listening on port ${port}!`)
   })
 })
 

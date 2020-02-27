@@ -37,6 +37,7 @@ Private Key
 * private key of account to make trade from
 * make sure account has ether to cover gas
 * do not use this account elsewhere!
+* Best Practice -> This key is not needed after the bot is running so after you run docker-compose up and the bot is working, remove the private key from the .env file
 
 Re Run Time
 * The time in MS you want to rescan the trades for liquidation

@@ -8,6 +8,7 @@ services:
     volumes:
       - ./src/config:/home/node/config
       - ./src:/home/node/src
+      - ./blockchainServices:/home/node/blockchainServices
     ports:
       - "3001:3001"
     command: ./node_modules/.bin/nodemon --exec babel-node src/index.js
