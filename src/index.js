@@ -8,7 +8,7 @@ import bodyParser from 'body-parser'
 import {main} from '../blockchainServices/index'
 import * as seedData from './seeders'
 
-const port = process.env.PORT
+const port = 3001
 const app = express()
 
 if (process.env.NODE === 'development') {
