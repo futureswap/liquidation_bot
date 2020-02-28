@@ -9,16 +9,27 @@
 * add .env with proper configurations (see below)
 * docker-compose up
 * for more detailed instructions for how to set up an aws ec2 instance see below
+## Private Key 
+* your private key is stored in a .env file 
+* you must create this file and add your private key
+```
+PRIVATE_KEY=<your private key>
+
+```
+* make sure account has ether to cover gas
+* do not use this account elsewhere!
+* Best Practice -> This key is not needed after the bot is running so after you run docker-compose up and the bot is working, remove the private key from the .env file
+
 ## Configurations
-* all conifigurations are done in a .env file
-* to run the bot you will have to create your own .env file with these parameters
+* all conifigurations are done in /src/config/configurations.js file
+* thest are the defaults
+
 
 ## 
 ```
 NETWORK=rinkeby
-URL=
+URL=null
 BLOCKSTART=0 
-PRIVATE_KEY=
 RERUNTIME=180000
 GASPRICE=2000000000
 ```
@@ -28,20 +39,14 @@ Network
 * rinkeby or homestead
 
 URL
-* If you would like to connect to your own http endpoint, defauly is blank which is infura
+* If you would like to connect to your own http endpoint, defauly is null which is infura
 
 Blockstart
 * Which Block should the bot start recording trades from 
 
-Private Key 
-* private key of account to make trade from
-* make sure account has ether to cover gas
-* do not use this account elsewhere!
-* Best Practice -> This key is not needed after the bot is running so after you run docker-compose up and the bot is working, remove the private key from the .env file
-
 Re Run Time
 * The time in MS you want to rescan the trades for liquidation
-* 0 would be no re runs 
+* null would be no re runs 
 * This will not effect scanning after chainlink update
 
 Gas Price 

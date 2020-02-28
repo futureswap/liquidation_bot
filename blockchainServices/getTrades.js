@@ -4,12 +4,14 @@ const {exchangeAddresses} =  require("./Addresses")
 const ethers = require('ethers');
 const {post} = require('./post');
 const {logger} = require('./logging')
+const {BLOCKSTART} = require("../src/config/configurations")
+
 
 
 
 const getTradesFromEvents = async () => {
     const contract = new ethers.Contract(exchangeAddresses[0], abi, provider);
-    provider.resetEventsBlock(process.env.BLOCKSTART)
+    provider.resetEventsBlock(BLOCKSTART)
     contract.on("TradeOpen", (one, two, three, four, five, six, seven, eight, nine, ten, eleven) => {
         const openTrade = async () => {
             const tradeId =  eleven.args._tradeId.toString()

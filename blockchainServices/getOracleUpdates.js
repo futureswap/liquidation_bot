@@ -2,10 +2,10 @@ const {chainlinkAbi} =  require("./chainlinkInstance")
 const {chainlinkAddress} =  require("./Addresses")
 const ethers = require('ethers');
 const {liquidationCheck} = require('./liqudate')
+const {URL, NETWORK} = require("../src/config/configurations")
 
 
-const url = process.env.URL
-const provider = url ? new ethers.providers.JsonRpcProvider(url) : new ethers.getDefaultProvider(process.env.NETWORK)
+const provider = URL ? new ethers.providers.JsonRpcProvider(URL) : new ethers.getDefaultProvider(NETWORK)
 
 const listenForChainlinkUpdate = async () => {
     const contract = new ethers.Contract(chainlinkAddress, chainlinkAbi, provider);

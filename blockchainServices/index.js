@@ -1,11 +1,13 @@
 const {getTradesFromEvents} = require("./getTrades")
 const {listenForChainlinkUpdate} = require("./getOracleUpdates")
 const {liquidationCheck} = require("./liqudate")
+const {RERUNTIME} = require("../src/config/configurations")
+
 const main = async () => {
      getTradesFromEvents()
      listenForChainlinkUpdate()
-     if (process.env.RERUNTIME) {
-        setInterval(liquidationCheck, process.env.RERUNTIME)
+     if (RERUNTIME) {
+        setInterval(liquidationCheck, RERUNTIME)
      }
 }
 

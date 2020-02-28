@@ -5,7 +5,7 @@ const {fetch} = require('./fetch');
 const {chainlinkAbi} =  require("./chainlinkInstance")
 const {chainlinkAddress} =  require("./Addresses")
 const {logger} = require('./logging')
-
+const {GASPRICE} = require("../src/config/configurations")
 
 
 const liquidationCheck = async (currentPrice) => {
@@ -45,10 +45,9 @@ const liquidationCheck = async (currentPrice) => {
 const liquidateTransaction = async (tradeId, exchangeAddress, wallet, nonce) => {
     const contract = new ethers.Contract(exchangeAddress, abi, provider);
     const method = contract.connect(wallet);
-    const gasPrice = process.env.GASPRICE
     const liquidateTrade = await method.liquidateTrade(tradeId, {
         nonce,
-        gasPrice: ethers.utils.bigNumberify(gasPrice)
+        gasPrice: ethers.utils.bigNumberify(GASPRICE)
     })
     logger.log('info',  liquidateTrade)
 }
