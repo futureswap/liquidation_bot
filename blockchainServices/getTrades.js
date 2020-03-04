@@ -12,9 +12,9 @@ const {BLOCKSTART} = require("../src/config/configurations")
 const getTradesFromEvents = async () => {
     const contract = new ethers.Contract(exchangeAddresses[0], abi, provider);
     provider.resetEventsBlock(BLOCKSTART)
-    contract.on("TradeOpen", (one, two, three, four, five, six, seven, eight, nine, ten, eleven) => {
+    contract.on("TradeOpen", (one, two, three, four, five, six, seven, eight, nine, ten, eleven, block) => {
         const openTrade = async () => {
-            const tradeId =  eleven.args._tradeId.toString()
+            const tradeId =  block.args._tradeId.toString()
             let liquidationPrice
             try {
                 liquidationPrice = await contract.getLiquidationPrice(tradeId)
@@ -26,51 +26,33 @@ const getTradesFromEvents = async () => {
             const obj =   {
                 tradeId: tradeId.toString(),
                 isClosed,
-                isLong: eleven.args._isLong, 
+                isLong: block.args._isLong, 
                 liquidationPrice: liquidationPrice.toString(),
-                block: eleven.blockNumber,
-                exchangeAddress: eleven.address
+                block: block.blockNumber,
+                exchangeAddress: block.address
             }
             logger.log('info',  obj)
             post(obj)
         }
         openTrade()
     })
-    contract.on("TradeClose", (one, two, three, four, five, six, seven, eight, nine, ten) => {
+    contract.on("TradeClose", (one, two, three, four, five, six, seven, eight, nine, ten, eleven, block) => {
         const closeTrade = async () => {
-            const tradeId =  ten.args._tradeId.toString()
+            const tradeId =  block.args._tradeId.toString()
             const liquidationPrice = 0
             const obj =   {
                 tradeId: tradeId.toString(),
                 isClosed: true,
-                isLong: ten.args._isLong, 
+                isLong: block.args._isLong, 
                 liquidationPrice: liquidationPrice.toString(),
-                block: ten.blockNumber,
-                exchangeAddress: ten.address
+                block: block.blockNumber,
+                exchangeAddress: block.address
             }
             logger.log('info', obj)
             post(obj)
         }
         closeTrade()
     })
-    contract.on("TradeLiquidate", (one, two, three, four, five, six, seven, eight, nine) => {
-        const liqudateTrade = async () => {
-            const tradeId =  nine.args._tradeId.toString()
-            const liquidationPrice = 0
-            const obj =   {
-                tradeId: tradeId.toString(),
-                isClosed: true,
-                isLong: nine.args._isLong, 
-                liquidationPrice: liquidationPrice.toString(),
-                block: nine.blockNumber,
-                exchangeAddress: nine.address
-            }
-            logger.log('info', obj)
-            post(obj)
-        }
-        liqudateTrade()
-    })
-    
 }
 
 module.exports = {

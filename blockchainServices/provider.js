@@ -1,8 +1,7 @@
 const ethers = require('ethers');
-require('dotenv').config()
+const {NETWORK, URL} = require('../src/config/configurations')
 
-const url = process.env.URL
-const provider = url ? new ethers.providers.JsonRpcProvider(url) : new ethers.getDefaultProvider(process.env.NETWORK)
+const provider = URL ? new ethers.providers.JsonRpcProvider(URL) : new ethers.getDefaultProvider(NETWORK)
 
 module.exports = {
     provider
