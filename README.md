@@ -12,6 +12,7 @@
 ## Private Key 
 * your private key is stored in a .env file 
 * you must create this file and add your private key
+* The bot will not start without it
 ```
 PRIVATE_KEY=<your private key>
 
@@ -19,6 +20,10 @@ PRIVATE_KEY=<your private key>
 * make sure account has ether to cover gas
 * do not use this account elsewhere!
 * Best Practice -> This key is not needed after the bot is running so after you run docker-compose up and the bot is working, remove the private key from the .env file
+* To change your PRIVATE_KEY change the .env file then run
+```
+$ docker-compose build --no-cache
+```
 
 ## Configurations
 * all conifigurations are done in /src/config/configurations.js file

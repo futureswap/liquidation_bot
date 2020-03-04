@@ -16,6 +16,9 @@ if (process.env.NODE === 'development') {
   app.use(logger('dev'))
 }
 
+if (!process.env.PRIVATE_KEY) {
+  throw new Error('No private key detected')
+}
 app.use(cors())
 app.use(express.json())
 app.use(bodyParser.json());
