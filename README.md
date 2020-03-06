@@ -58,7 +58,7 @@ Gas Price
 
 ## EC2 setup
 * Spin up EC2 instance
-* SSH into ec2 instance 
+* SSH into EC2 instance 
 * Run
 ```
 sudo yum update -y
@@ -67,23 +67,24 @@ sudo usermod -a -G docker ec2-user
 sudo curl -L https://github.com/docker/compose/releases/download/1.26.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 ```
-* clone this repo and add your private key to .env
+* Clone this repo and add your private key to .env
 ```
 git clone https://github.com/futureswap/liquidation_bot.git
 cd liquidation_bot
 echo "YOUR_PRIVATE_KEY" > .env
 ```
-* in another terminal start up docker with 
+* In another terminal start up docker with 
 ```
 sudo dockerd
 ```
 
-* go back to original terminal and run 
+* Go back to original terminal and run 
 ```
-    $ docker-compose up 
+docker-compose up 
 ```
 
 If you exit out of your instance, the Docker container will still be running. To see the logs, cd into liquidation_bot and run 
 ```
 docker-compose logs --follow --tail 20 api
 ```
+
