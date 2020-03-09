@@ -6,7 +6,7 @@ import express from 'express'
 import cors from 'cors'
 import bodyParser from 'body-parser'
 import {main} from '../blockchainServices/index'
-import {eraseDatabaseOnSync} from './config/configurations'
+import {ERASE_DATABASE_ON_SYNC} from './config/configurations'
 import * as seedData from './seeders'
 
 const port = 3001
@@ -34,8 +34,8 @@ app.use('/trades', routes.trades)
 
 
 
-sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
-  if (eraseDatabaseOnSync) {
+sequelize.sync({ force: ERASE_DATABASE_ON_SYNC }).then(async () => {
+  if (ERASE_DATABASE_ON_SYNC) {
     // seedData.createTrade();
   }
     app.listen(port, () => {
