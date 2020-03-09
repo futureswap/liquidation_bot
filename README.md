@@ -100,4 +100,10 @@ If you exit out of your instance, the Docker container will still be running. To
 ```
 docker-compose logs --follow --tail 20 api
 ```
-
+* to View your database, exec into your docker instances
+```
+docker-compose exec postgres psql -U postgres postgres
+```
+```
+ SELECT * FROM trades;
+ ```
