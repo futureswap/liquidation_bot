@@ -18,3 +18,12 @@ export const setTrades = async (req, res) => {
         return res.status(500).send(e.message)
     }
 }
+
+export const removeTrades = async (req, res) => {
+    try {
+        await tradeService.removeTrades(req)
+        return res.status(200).send('database updated');
+    } catch (e) {
+        return res.status(500).send(e.message)
+    }
+}

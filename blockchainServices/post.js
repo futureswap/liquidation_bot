@@ -1,9 +1,13 @@
 const axios = require('axios');
 const {errorLogger} = require("./logging")
+const {PRUNING} = require("../src/config/configurations")
 
 
-const post = async (data) => {
-    const url = 'http://localhost:3001/trades'
+const post = async (data, route) => {
+    if (!PRUNING) {
+        route = "add"
+    }
+    const url = `http://localhost:3001/trades/${route}`
 
 try {
     const response = await axios({
