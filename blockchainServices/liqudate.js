@@ -5,13 +5,14 @@ const {fetch} = require('./fetch');
 const {chainlinkAbi} =  require("./chainlinkInstance")
 const {chainlinkAddress} =  require("./Addresses")
 const {logger} = require('./logging')
-const {GASPRICE} = require("../src/config/configurations")
+const {GASPRICE, TIMEZONE} = require("../src/config/configurations")
 const {post} = require('./post');
+const moment = require('moment-timezone');
 
 
 
 const liquidationCheck = async (currentPrice) => {
-    logger.log('info',  `Liquidation check at ${Date.now()}`)
+    logger.log('info',  `Liquidation check at ${moment().tz(TIMEZONE).format()}`)
     const dataBaseData = await fetch()
     if (!currentPrice) {
         const chainlink = new ethers.Contract(chainlinkAddress, chainlinkAbi, provider);
