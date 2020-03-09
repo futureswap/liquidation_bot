@@ -25,6 +25,7 @@
     "dotenv": "^8.2.0",
     "ethers": "^4.0.45",
     "express": "^4.17.1",
+    "moment-timezone": "^0.5.28",
     "pg": "^7.18.1",
     "sequelize": "^5.21.3",
     "sequelize-cli": "^5.5.1",

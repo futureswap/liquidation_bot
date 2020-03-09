@@ -4,6 +4,7 @@ const BLOCKSTART=0
 const RERUNTIME=180000
 const GASPRICE=2000000000
 const eraseDatabaseOnSync=false
+const TIMEZONE = "America/Toronto"
 
 module.exports = {
     NETWORK, 
@@ -11,5 +12,6 @@ module.exports = {
     BLOCKSTART, 
     RERUNTIME, 
     GASPRICE, 
-    eraseDatabaseOnSync
+    eraseDatabaseOnSync,
+    TIMEZONE
 }
