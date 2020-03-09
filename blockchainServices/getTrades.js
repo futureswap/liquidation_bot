@@ -4,7 +4,7 @@ const {exchangeAddresses} =  require("./Addresses")
 const ethers = require('ethers');
 const {post} = require('./post');
 const {logger} = require('./logging')
-const {BLOCKSTART} = require("../src/config/configurations")
+const {BLOCKSTART, PRUNING} = require("../src/config/configurations")
 
 
 
@@ -32,7 +32,10 @@ const getTradesFromEvents = async () => {
                 exchangeAddress: block.address
             }
             logger.log('info',  obj)
-            post(obj)
+            if (isClosed && PRUNING) {
+            } else {
+                post(obj, "add")
+            }
         }
         openTrade()
     })
@@ -49,7 +52,7 @@ const getTradesFromEvents = async () => {
                 exchangeAddress: block.address
             }
             logger.log('info', obj)
-            post(obj)
+            post(obj, "remove")
         }
         closeTrade()
     })

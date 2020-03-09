@@ -15,3 +15,10 @@ export const setTrades = async (req) => {
         where: {tradeId: req.body.tradeId}
     })
 } 
+
+export const removeTrades = async (req) => {
+  return await models.trade.destroy(
+    {
+        where: {tradeId: req.body.tradeId},
+    })
+} 

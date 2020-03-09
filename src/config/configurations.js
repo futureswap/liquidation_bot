@@ -5,6 +5,7 @@ const RERUNTIME=180000
 const GASPRICE=2000000000
 const ERASE_DATABASE_ON_SYNC=false
 const TIMEZONE = "America/Toronto"
+const PRUNING = true
 
 module.exports = {
     NETWORK, 
@@ -13,5 +14,6 @@ module.exports = {
     RERUNTIME, 
     GASPRICE, 
     ERASE_DATABASE_ON_SYNC,
-    TIMEZONE
+    TIMEZONE,
+    PRUNING
 }
