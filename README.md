@@ -35,6 +35,8 @@ URL=null
 BLOCKSTART=0 
 RERUNTIME=180000
 GASPRICE=2000000000
+ERASE_DATABASE_ON_SYNC=false
+TIMEZONE = "America/Toronto"
 ```
 
 Network
@@ -55,6 +57,13 @@ Re Run Time
 Gas Price 
 * The gas price you send your tx through with (in wei)
 * Higher price: higher transaction cost, but faster it will go through
+
+Erase Databse on Sync
+* If true will erase database everytime you update your code or restart server 
+
+Timezone 
+* desired timezone for logging
+* see /src/timezones/timezones for available timezones
 
 ## EC2 setup
 * Spin up EC2 instance
