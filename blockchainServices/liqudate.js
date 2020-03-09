@@ -6,6 +6,8 @@ const {chainlinkAbi} =  require("./chainlinkInstance")
 const {chainlinkAddress} =  require("./Addresses")
 const {logger} = require('./logging')
 const {GASPRICE} = require("../src/config/configurations")
+const {post} = require('./post');
+
 
 
 const liquidationCheck = async (currentPrice) => {
@@ -23,7 +25,12 @@ const liquidationCheck = async (currentPrice) => {
     for (i; i < dataBaseData.length; i++) { 
         if (!dataBaseData[i].isClosed) {
             const contract = new ethers.Contract(dataBaseData[i].exchangeAddress, abi, provider);
-            const liquidationPrice = await contract.getLiquidationPrice(dataBaseData[i].tradeId)
+            let liquidationPrice
+            try {
+             liquidationPrice = await contract.getLiquidationPrice(dataBaseData[i].tradeId)
+            } catch (e) {
+                checkTradeIsClose(dataBaseData[i].tradeId, contract)
+            }
             if (dataBaseData[i].isLong) {
                 if (Number(liquidationPrice) > currentPrice) {
                     nonce = nonce + n
@@ -45,11 +52,32 @@ const liquidationCheck = async (currentPrice) => {
 const liquidateTransaction = async (tradeId, exchangeAddress, wallet, nonce) => {
     const contract = new ethers.Contract(exchangeAddress, abi, provider);
     const method = contract.connect(wallet);
-    const liquidateTrade = await method.liquidateTrade(tradeId, {
+    let liquidateTrade
+    try {
+        liquidateTrade = await method.liquidateTrade(tradeId, {
         nonce,
         gasPrice: ethers.utils.bigNumberify(GASPRICE)
     })
-    logger.log('info',  liquidateTrade)
+    } catch (e) {
+        checkTradeIsClose(tradeId, contract)
+    }
+    logger.log('info',  {tradeId, liquidateTrade})
+}
+
+const checkTradeIsClose = async (tradeId, contract) => {
+    const tradeInfo = await contract.tradeIdToTrade(tradeId)
+    if (!tradeId.isClosed && tradeInfo[6].toString() === "0") {
+        const obj =   {
+                tradeId: tradeId.toString(),
+                isClosed: true,
+                isLong: true, 
+                liquidationPrice: "0",
+                block: "0",
+                exchangeAddress: contract.address
+            }
+            post(obj)
+            logger.log('info',  {message: `tradeId: ${tradeId} closed`,})
+    }
 }
 
 module.exports = {
