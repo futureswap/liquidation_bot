@@ -36,7 +36,8 @@ BLOCKSTART=0
 RERUNTIME=180000
 GASPRICE=2000000000
 ERASE_DATABASE_ON_SYNC=false
-TIMEZONE = "America/Toronto"
+TIMEZONE="America/Toronto"
+PRUNING=true
 ```
 
 Network
@@ -64,6 +65,9 @@ Erase Databse on Sync
 Timezone 
 * desired timezone for logging
 * see /src/timezones/timezones for available timezones
+
+Pruning
+* If the database removes the closed trades
 
 ## EC2 setup
 * Spin up EC2 instance
