@@ -108,6 +108,6 @@ docker-compose exec postgres psql -U postgres postgres
  SELECT * FROM trades;
  ```
 
-## DigitalOcean/Terraform setup
+## Terraform setup
 
-To deploy this bot and the other Futureswap bots, see [this repo](https://github.com/jonpurdy/fsbot_terraform).
+To deploy this bot and the other Futureswap bots using Terraform on DigitalOcean, see [this repo](https://github.com/jonpurdy/fsbot_terraform). AWS support coming in the future.
