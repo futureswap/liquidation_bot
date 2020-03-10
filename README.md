@@ -2,13 +2,13 @@
 * This is a bot that will scan our system for trades that are ready to be liquidated, then liquidate them
 * It will store all trades and check either every X min or every time the oracle price changes
 
-## Requierments 
+## Requirements 
 * Docker-compose version 1.24.1 or later
 
 ## Run instructions
-* add .env with proper configurations (see below)
-* docker-compose up
-* for more detailed instructions for how to set up an aws ec2 instance see below
+* Add .env with proper configurations (see below)
+* `docker-compose up`
+* For more detailed instructions for how to set up an AWS EC2 instance, see below
 
 ## Private Key 
 * Your private key is stored in a .env file 
@@ -107,3 +107,7 @@ docker-compose exec postgres psql -U postgres postgres
 ```
  SELECT * FROM trades;
  ```
+
+## DigitalOcean/Terraform setup
+
+To deploy this bot and the other Futureswap bots, see [this repo](https://github.com/jonpurdy/fsbot_terraform).
