@@ -1,4 +1,3 @@
-
 const additionalEvents = [
   {
     anonymous: false,
@@ -6,31 +5,37 @@ const additionalEvents = [
       {
         indexed: true,
         internalType: "uint256",
-        name: "_tradeId",
+        name: "tradeId",
         type: "uint256"
       },
       {
         indexed: true,
         internalType: "address",
-        name: "_tradeOwner",
+        name: "tradeOwner",
         type: "address"
       },
       {
         indexed: false,
         internalType: "uint256",
-        name: "_addedCollateral",
+        name: "addedCollateral",
         type: "uint256"
       },
       {
         indexed: false,
         internalType: "uint256",
-        name: "_assetPrice",
+        name: "assetPrice",
         type: "uint256"
       },
       {
         indexed: false,
         internalType: "uint256",
-        name: "_stablePrice",
+        name: "stablePrice",
+        type: "uint256"
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "timestamp",
         type: "uint256"
       }
     ],
@@ -43,19 +48,19 @@ const additionalEvents = [
       {
         indexed: true,
         internalType: "uint256",
-        name: "_tradeId",
+        name: "tradeId",
         type: "uint256"
       },
       {
         indexed: true,
         internalType: "address",
-        name: "_tradeOwner",
+        name: "tradeOwner",
         type: "address"
       },
       {
         indexed: false,
         internalType: "int256",
-        name: "_protectedOpenPrice",
+        name: "protectedOpenPrice",
         type: "int256"
       }
     ],
@@ -67,68 +72,117 @@ const additionalEvents = [
     inputs: [
       {
         indexed: true,
-        internalType: "uint256",
-        name: "_tradeId",
-        type: "uint256"
-      },
-      {
-        indexed: true,
         internalType: "address",
-        name: "_tradeOwner",
+        name: "provider",
         type: "address"
       },
       {
         indexed: false,
         internalType: "bool",
-        name: "_isLong",
-        type: "bool"
-      },
-      {
-        indexed: false,
-        internalType: "bool",
-        name: "_isLiquidated",
+        name: "isTradingAsset",
         type: "bool"
       },
       {
         indexed: false,
         internalType: "uint256",
-        name: "_collateral",
+        name: "assetAmount",
         type: "uint256"
       },
       {
         indexed: false,
         internalType: "uint256",
-        name: "_protectedAssetOpenPrice",
+        name: "stableAmount",
         type: "uint256"
       },
       {
         indexed: false,
         internalType: "uint256",
-        name: "_assetPrice",
+        name: "assetPrice",
         type: "uint256"
       },
       {
         indexed: false,
         internalType: "uint256",
-        name: "_stablePrice",
+        name: "stablePrice",
         type: "uint256"
       },
       {
         indexed: false,
         internalType: "uint256",
-        name: "_redemptionAmount",
+        name: "timestamp",
         type: "uint256"
-      },
+      }
+    ],
+    name: "InternalExchange",
+    type: "event"
+  },
+  {
+    anonymous: false,
+    inputs: [
       {
-        indexed: false,
+        indexed: true,
         internalType: "uint256",
-        name: "_timestamp",
+        name: "tradeId",
         type: "uint256"
       },
       {
         indexed: true,
         internalType: "address",
-        name: "_referral",
+        name: "tradeOwner",
+        type: "address"
+      },
+      {
+        indexed: false,
+        internalType: "bool",
+        name: "isLong",
+        type: "bool"
+      },
+      {
+        indexed: false,
+        internalType: "bool",
+        name: "isLiquidated",
+        type: "bool"
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "collateral",
+        type: "uint256"
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "protectedAssetOpenPrice",
+        type: "uint256"
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "assetPrice",
+        type: "uint256"
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "stablePrice",
+        type: "uint256"
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "assetRedemptionAmount",
+        type: "uint256"
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "timestamp",
+        type: "uint256"
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "referral",
         type: "address"
       }
     ],
@@ -141,37 +195,37 @@ const additionalEvents = [
       {
         indexed: true,
         internalType: "uint256",
-        name: "_tradeId",
+        name: "tradeId",
         type: "uint256"
       },
       {
         indexed: true,
         internalType: "address",
-        name: "_tradeOwner",
+        name: "tradeOwner",
         type: "address"
       },
       {
         indexed: true,
         internalType: "address",
-        name: "_liquidator",
+        name: "liquidator",
         type: "address"
       },
       {
         indexed: false,
         internalType: "uint256",
-        name: "_liquidatorReturn",
+        name: "stableToSendLiquidator",
         type: "uint256"
       },
       {
         indexed: false,
         internalType: "uint256",
-        name: "_liqTraderReturn",
+        name: "stableToSendTradeOwner",
         type: "uint256"
       },
       {
         indexed: false,
         internalType: "uint256",
-        name: "_timestamp",
+        name: "timestamp",
         type: "uint256"
       }
     ],
@@ -184,67 +238,67 @@ const additionalEvents = [
       {
         indexed: true,
         internalType: "uint256",
-        name: "_tradeId",
+        name: "tradeId",
         type: "uint256"
       },
       {
         indexed: true,
         internalType: "address",
-        name: "_tradeOwner",
+        name: "tradeOwner",
         type: "address"
       },
       {
         indexed: false,
         internalType: "bool",
-        name: "_isLong",
+        name: "isLong",
         type: "bool"
       },
       {
         indexed: false,
         internalType: "uint256",
-        name: "_collateral",
+        name: "collateral",
         type: "uint256"
       },
       {
         indexed: false,
         internalType: "uint256",
-        name: "_leverage",
+        name: "leverage",
         type: "uint256"
       },
       {
         indexed: false,
         internalType: "uint256",
-        name: "_assetPrice",
+        name: "assetPrice",
         type: "uint256"
       },
       {
         indexed: false,
         internalType: "uint256",
-        name: "_stablePrice",
+        name: "stablePrice",
         type: "uint256"
       },
       {
         indexed: false,
         internalType: "uint256",
-        name: "_openFee",
+        name: "openFee",
         type: "uint256"
       },
       {
         indexed: false,
         internalType: "uint256",
-        name: "_oracleRoundId",
+        name: "oracleRoundId",
         type: "uint256"
       },
       {
         indexed: false,
         internalType: "uint256",
-        name: "_timestamp",
+        name: "timestamp",
         type: "uint256"
       },
       {
         indexed: true,
         internalType: "address",
-        name: "_referral",
+        name: "referral",
         type: "address"
       }
     ],
@@ -257,43 +311,43 @@ const additionalEvents = [
       {
         indexed: true,
         internalType: "address",
-        name: "_provider",
+        name: "provider",
         type: "address"
       },
       {
         indexed: false,
         internalType: "uint256",
-        name: "_assetTokenAmount",
+        name: "assetTokenAmount",
         type: "uint256"
       },
       {
         indexed: false,
         internalType: "uint256",
-        name: "_stableTokenAmount",
+        name: "stableTokenAmount",
         type: "uint256"
       },
       {
         indexed: false,
         internalType: "uint256",
-        name: "_LSTPrice",
+        name: "lstPrice",
         type: "uint256"
       },
       {
         indexed: false,
         internalType: "uint256",
-        name: "_LiquidityMinted",
+        name: "liquidityMinted",
         type: "uint256"
       },
       {
         indexed: false,
         internalType: "bool",
-        name: "_addedLiq",
+        name: "addedLiq",
         type: "bool"
       },
       {
         indexed: false,
         internalType: "uint256",
-        name: "_timestamp",
+        name: "timestamp",
         type: "uint256"
       }
     ],
@@ -307,7 +361,7 @@ const abi = [
     inputs: [
       {
         internalType: "address",
-        name: "_liquidityToken",
+        name: "_liquidityTokenAddress",
         type: "address"
       },
       {
@@ -376,25 +430,6 @@ const abi = [
     type: "constructor"
   },
   {
-    anonymous: false,
-    inputs: [
-      {
-        indexed: true,
-        internalType: "address",
-        name: "previousOwner",
-        type: "address"
-      },
-      {
-        indexed: true,
-        internalType: "address",
-        name: "newOwner",
-        type: "address"
-      }
-    ],
-    name: "OwnershipTransferred",
-    type: "event"
-  },
-  {
     payable: true,
     stateMutability: "payable",
     type: "fallback"
@@ -441,12 +476,12 @@ const abi = [
       },
       {
         internalType: "uint256",
-        name: "DSRadditionReward",
+        name: "dsrAdditionalRewards",
         type: "uint256"
       },
       {
         internalType: "uint256",
-        name: "liqTraderReturn",
+        name: "liquidatedTraderReturn",
         type: "uint256"
       },
       {
@@ -486,38 +521,8 @@ const abi = [
       },
       {
         internalType: "uint256",
-        name: "timeOfLastDFR",
+        name: "lastDfrUpdate",
         type: "uint256"
-      }
-    ],
-    payable: false,
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    constant: true,
-    inputs: [],
-    name: "exchangeInitialized",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool"
-      }
-    ],
-    payable: false,
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    constant: true,
-    inputs: [],
-    name: "fromInitializer",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool"
       }
     ],
     payable: false,
@@ -536,12 +541,12 @@ const abi = [
       },
       {
         internalType: "uint256",
-        name: "weekleyTimeLiquidity",
+        name: "lastWeeklyLiquidityUpdate",
         type: "uint256"
       },
       {
         internalType: "uint256",
-        name: "incentiveModifier",
+        name: "exchangeIncentiveWeight",
         type: "uint256"
       }
     ],
@@ -561,7 +566,7 @@ const abi = [
       },
       {
         internalType: "contract TOKEN",
-        name: "token",
+        name: "assetToken",
         type: "address"
       },
       {
@@ -598,6 +603,36 @@ const abi = [
         internalType: "contract VatLike",
         name: "vat",
         type: "address"
+      }
+    ],
+    payable: false,
+    stateMutability: "view",
+    type: "function"
+  },
+  {
+    constant: true,
+    inputs: [],
+    name: "isExchangeInitialized",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool"
+      }
+    ],
+    payable: false,
+    stateMutability: "view",
+    type: "function"
+  },
+  {
+    constant: true,
+    inputs: [],
+    name: "isFromInitializer",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool"
       }
     ],
     payable: false,
@@ -650,27 +685,18 @@ const abi = [
     type: "function"
   },
   {
-    constant: false,
-    inputs: [],
-    name: "renounceOwnership",
-    outputs: [],
-    payable: false,
-    stateMutability: "nonpayable",
-    type: "function"
-  },
-  {
     constant: true,
     inputs: [],
     name: "state",
     outputs: [
       {
         internalType: "uint256",
-        name: "initFee",
+        name: "tradeInitFee",
         type: "uint256"
       },
       {
         internalType: "uint256",
-        name: "numTrades",
+        name: "tradeCount",
         type: "uint256"
       },
       {
@@ -685,12 +711,12 @@ const abi = [
       },
       {
         internalType: "uint256",
-        name: "minTrade",
+        name: "minTradeSize",
         type: "uint256"
       },
       {
         internalType: "uint256",
-        name: "frontRunningTime",
+        name: "frontRunningTimeWindow",
         type: "uint256"
       }
     ],
@@ -883,7 +909,7 @@ const abi = [
       },
       {
         internalType: "bool",
-        name: "_tradingAsset",
+        name: "_isTradingAsset",
         type: "bool"
       }
     ],
@@ -891,32 +917,6 @@ const abi = [
     outputs: [],
     payable: false,
     stateMutability: "nonpayable",
-    type: "function"
-  },
-  {
-    constant: true,
-    inputs: [
-      {
-        internalType: "bool",
-        name: "_tradingAsset",
-        type: "bool"
-      },
-      {
-        internalType: "uint256",
-        name: "_amount",
-        type: "uint256"
-      }
-    ],
-    name: "getImbalance",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256"
-      }
-    ],
-    payable: false,
-    stateMutability: "view",
     type: "function"
   },
   {
@@ -933,38 +933,17 @@ const abi = [
         internalType: "bool",
         name: "",
         type: "bool"
-      }
-    ],
-    payable: false,
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    constant: false,
-    inputs: [
+      },
       {
         internalType: "uint256",
-        name: "_amount",
+        name: "",
         type: "uint256"
-      }
-    ],
-    name: "setIncentiveModifier",
-    outputs: [],
-    payable: false,
-    stateMutability: "nonpayable",
-    type: "function"
-  },
-  {
-    constant: true,
-    inputs: [
+      },
       {
         internalType: "uint256",
-        name: "_snapshotId",
+        name: "",
         type: "uint256"
-      }
-    ],
-    name: "getLiquidityPayoutMultiplier",
-    outputs: [
+      },
       {
         internalType: "uint256",
         name: "",
@@ -1015,7 +994,7 @@ const abi = [
     inputs: [
       {
         internalType: "uint256",
-        name: "tokensToBurn",
+        name: "_tokensToBurn",
         type: "uint256"
       }
     ],
@@ -1043,7 +1022,7 @@ const abi = [
   {
     constant: false,
     inputs: [],
-    name: "addFundsToDSR",
+    name: "addFundsToDsr",
     outputs: [],
     payable: false,
     stateMutability: "nonpayable",
@@ -1058,7 +1037,7 @@ const abi = [
         type: "int256"
       }
     ],
-    name: "setDfrDivder",
+    name: "setDfrDivider",
     outputs: [],
     payable: false,
     stateMutability: "nonpayable",
@@ -1074,6 +1053,21 @@ const abi = [
       }
     ],
     name: "setTimeFee",
+    outputs: [],
+    payable: false,
+    stateMutability: "nonpayable",
+    type: "function"
+  },
+  {
+    constant: false,
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_amount",
+        type: "uint256"
+      }
+    ],
+    name: "setExchangeIncentiveWeight",
     outputs: [],
     payable: false,
     stateMutability: "nonpayable",
@@ -1118,7 +1112,7 @@ const abi = [
         type: "uint256"
       }
     ],
-    name: "setInitFee",
+    name: "setTradeInitFee",
     outputs: [],
     payable: false,
     stateMutability: "nonpayable",
@@ -1133,7 +1127,7 @@ const abi = [
         type: "uint256"
       }
     ],
-    name: "setLiqTraderReturn",
+    name: "setLiquidatedTraderReturn",
     outputs: [],
     payable: false,
     stateMutability: "nonpayable",
@@ -1204,11 +1198,11 @@ const abi = [
     inputs: [
       {
         internalType: "uint256",
-        name: "_frontrunningTime",
+        name: "_frontRunningTimeWindow",
         type: "uint256"
       }
     ],
-    name: "setFrontrunningTime",
+    name: "setFrontRunningTimeWindow",
     outputs: [],
     payable: false,
     stateMutability: "nonpayable",
@@ -1237,7 +1231,7 @@ const abi = [
   {
     constant: true,
     inputs: [],
-    name: "getLSTPrice",
+    name: "getLtPrice",
     outputs: [
       {
         internalType: "uint256",
@@ -1252,7 +1246,37 @@ const abi = [
   {
     constant: true,
     inputs: [],
-    name: "stableTokenPool",
+    name: "getAssetTokenPrice",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256"
+      }
+    ],
+    payable: false,
+    stateMutability: "view",
+    type: "function"
+  },
+  {
+    constant: true,
+    inputs: [],
+    name: "getStableTokenPrice",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256"
+      }
+    ],
+    payable: false,
+    stateMutability: "view",
+    type: "function"
+  },
+  {
+    constant: true,
+    inputs: [],
+    name: "getStableTokenAvailable",
     outputs: [
       {
         internalType: "uint256",
@@ -1268,6 +1292,27 @@ const abi = [
     constant: true,
     inputs: [],
     name: "getAssetTokenAvailable",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256"
+      }
+    ],
+    payable: false,
+    stateMutability: "view",
+    type: "function"
+  },
+  {
+    constant: true,
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_snapshotId",
+        type: "uint256"
+      }
+    ],
+    name: "getLiquidityPayoutMultiplier",
     outputs: [
       {
         internalType: "uint256",
@@ -1339,7 +1384,7 @@ const abi = [
   {
     constant: true,
     inputs: [],
-    name: "getDiscountedInitFee",
+    name: "getDiscountedTradeInitFee",
     outputs: [
       {
         internalType: "uint256",
@@ -1425,8 +1470,6 @@ const abi = [
   ...additionalEvents
 ];
 
-
-
 module.exports = {
   abi
-}
+};

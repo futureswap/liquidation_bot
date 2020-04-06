@@ -92,7 +92,10 @@ sudo dockerd
 ```
 
 * Go back to original terminal and run 
+
 ```
+docker-compose build
+
 docker-compose up 
 ```
 
