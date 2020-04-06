@@ -1,4 +1,4 @@
- const exchangeAddresses =  ["0xCeC3b509093B341399B9083678a2bD96429A0A6C"]
+ const exchangeAddresses =  ["0x4B757b12659c5f364C2d05c08165D2EB45F4Cf5C"]
  module.exports = {
      exchangeAddresses,
  }
