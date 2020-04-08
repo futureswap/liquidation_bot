@@ -38,6 +38,7 @@ GASPRICE=2000000000
 ERASE_DATABASE_ON_SYNC=false
 TIMEZONE="America/Toronto"
 PRUNING=true
+EXCHANGE_ADDRESSES =  ["0x4B757b12659c5f364C2d05c08165D2EB45F4Cf5C"]
 ```
 
 Network
@@ -68,6 +69,9 @@ Timezone
 
 Pruning
 * If the database removes the closed trades
+
+Exchange Addresses 
+* addresses of the exchanges to target (currently only works on one exchange) 
 
 ## EC2 setup
 * Spin up EC2 instance
