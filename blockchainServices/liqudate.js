@@ -8,7 +8,11 @@ const {logger} = require('./logging')
 const {GASPRICE, TIMEZONE} = require("../src/config/configurations")
 const {post} = require('./post');
 const moment = require('moment-timezone');
-
+const TelegramBot = require('node-telegram-bot-api');
+// replace the value below with the Telegram token you receive from @BotFather
+const token = process.env.TELEGRAM_TOKEN;
+const bot = new TelegramBot(token, {polling: true});
+const bot_room_IDs = [];
 
 
 const liquidationCheck = async (currentPrice) => {
@@ -77,10 +81,29 @@ const checkTradeIsClose = async (tradeId, contract) => {
                 block: "0",
                 exchangeAddress: contract.address
             }
-            post(obj, "remove")
-            logger.log('info',  {message: `tradeId: ${tradeId} closed`,})
+        post(obj, "remove")
+        logger.log('info',  {message: `tradeId: ${tradeId} closed`,})
+        
+        sendMessage(tradeId.toString());
     }
 }
+
+const sendMessage = async (tradeId) => {
+    if (tradeId !== undefined) {
+        bot_room_IDs.forEach((ID) => {
+            bot.sendMessage(ID, 'BOOOM You just rekd someone! Trade ID: ' + tradeId);
+        })
+    }
+}
+
+bot.on('message', (msg) => {
+    if (!bot_room_IDs.includes(msg.chat.id)) {
+        bot_room_IDs.push(msg.chat.id);
+        bot.sendMessage(msg.chat.id, 'subscribed');
+    } else {
+        bot.sendMessage(msg.chat.id, 'already subscribed');
+    }
+});
 
 module.exports = {
     liquidationCheck
