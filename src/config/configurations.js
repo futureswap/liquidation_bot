@@ -6,7 +6,7 @@ const GASPRICE=2000000000
 const ERASE_DATABASE_ON_SYNC=false
 const TIMEZONE = "America/Toronto"
 const PRUNING = true
-const EXCHANGE_ADDRESSES =  ["0x4B757b12659c5f364C2d05c08165D2EB45F4Cf5C"]
+const EXCHANGE_ADDRESSES =  ["0x2bCec43Df64254becceEeb12809038294b0283ee"]
 
 
 module.exports = {
