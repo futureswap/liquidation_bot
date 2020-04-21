@@ -34,7 +34,7 @@ NETWORK=homestead
 URL=null
 BLOCKSTART=0 
 RERUNTIME=180000
-GASPRICE=5000000000
+GASPRICE=20000000000
 ERASE_DATABASE_ON_SYNC=false
 TIMEZONE="America/Toronto"
 PRUNING=true
@@ -83,10 +83,8 @@ https://gist.github.com/npearce/6f3c7826c7499587f00957fee62f8ee9
 ```
 git clone https://github.com/futureswap/liquidation_bot.git
 cd liquidation_bot
-echo "YOUR_PRIVATE_KEY" > .env
 ```
-
-* Go back to original terminal and run 
+follow the steps above to add your private key
 
 ```
 docker-compose build

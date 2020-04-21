@@ -1456,11 +1456,6 @@ const abi = [
         internalType: "address",
         name: "",
         type: "address"
-      },
-      {
-        internalType: "uint128",
-        name: "",
-        type: "uint128"
       }
     ],
     payable: false,
