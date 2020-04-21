@@ -51,7 +51,7 @@ URL
 Blockstart
 * Which Block should the bot start recording trades from 
 
-Re Run Time
+Re-Run Time
 * The time in MS you want to rescan the trades for liquidation
 * null would be no re runs 
 * This will not affect scanning after Chainlink update
