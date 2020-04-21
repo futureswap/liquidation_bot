@@ -30,11 +30,11 @@ $ docker-compose build --no-cache
 * These are the defaults
 ## 
 ```
-NETWORK=rinkeby
+NETWORK=homestead
 URL=null
 BLOCKSTART=0 
 RERUNTIME=180000
-GASPRICE=2000000000
+GASPRICE=5000000000
 ERASE_DATABASE_ON_SYNC=false
 TIMEZONE="America/Toronto"
 PRUNING=true
@@ -76,23 +76,14 @@ Exchange Addresses
 ## EC2 setup
 * Spin up EC2 instance
 * SSH into EC2 instance 
-* Run
-```
-sudo yum update -y
-sudo yum install -y docker git
-sudo usermod -a -G docker ec2-user
-sudo curl -L https://github.com/docker/compose/releases/download/1.26.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-```
+* to get docker compose follow this 
+https://gist.github.com/npearce/6f3c7826c7499587f00957fee62f8ee9
+
 * Clone this repo and add your private key to .env
 ```
 git clone https://github.com/futureswap/liquidation_bot.git
 cd liquidation_bot
 echo "YOUR_PRIVATE_KEY" > .env
-```
-* In another terminal start up docker with 
-```
-sudo dockerd
 ```
 
 * Go back to original terminal and run 
